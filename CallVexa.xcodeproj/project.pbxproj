@@ -1,0 +1,440 @@
+// !$*UTF-8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2000000000000000000003EA /* CallVexaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000003E9 /* CallVexaApp.swift */; };
+		2000000000000000000003EC /* AuthSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000003EB /* AuthSessionManager.swift */; };
+		2000000000000000000003EE /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000003ED /* APIClient.swift */; };
+		2000000000000000000003F0 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000003EF /* APIError.swift */; };
+		2000000000000000000003F2 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000003F1 /* Colors.swift */; };
+		2000000000000000000003F4 /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000003F3 /* Typography.swift */; };
+		2000000000000000000003F6 /* Countries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000003F5 /* Countries.swift */; };
+		2000000000000000000003F8 /* DateFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000003F7 /* DateFormatters.swift */; };
+		2000000000000000000003FA /* PhoneNumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000003F9 /* PhoneNumberFormatter.swift */; };
+		2000000000000000000003FC /* AudioDeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000003FB /* AudioDeviceManager.swift */; };
+		2000000000000000000003FE /* CallKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000003FD /* CallKitManager.swift */; };
+		200000000000000000000400 /* CallState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000003FF /* CallState.swift */; };
+		200000000000000000000402 /* PushKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000401 /* PushKitManager.swift */; };
+		200000000000000000000404 /* VoiceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000403 /* VoiceService.swift */; };
+		200000000000000000000406 /* AnalyticsSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000405 /* AnalyticsSummary.swift */; };
+		200000000000000000000408 /* CallRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000407 /* CallRecord.swift */; };
+		20000000000000000000040A /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000409 /* Contact.swift */; };
+		20000000000000000000040C /* LeadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000040B /* LeadModel.swift */; };
+		20000000000000000000040E /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000040D /* SettingsModel.swift */; };
+		200000000000000000000410 /* SMSModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000040F /* SMSModel.swift */; };
+		200000000000000000000412 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000411 /* User.swift */; };
+		200000000000000000000414 /* VoicemailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000413 /* VoicemailModel.swift */; };
+		200000000000000000000416 /* VoiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000415 /* VoiceModel.swift */; };
+		200000000000000000000418 /* WhatsAppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000417 /* WhatsAppModel.swift */; };
+		20000000000000000000041A /* AgentWorkstationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000419 /* AgentWorkstationView.swift */; };
+		20000000000000000000041C /* AnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000041B /* AnalyticsView.swift */; };
+		20000000000000000000041E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000041D /* LoginView.swift */; };
+		200000000000000000000420 /* UIComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000041F /* UIComponents.swift */; };
+		200000000000000000000422 /* ContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000421 /* ContactsView.swift */; };
+		200000000000000000000424 /* ActiveCallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000423 /* ActiveCallView.swift */; };
+		200000000000000000000426 /* CountryPickerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000425 /* CountryPickerSheet.swift */; };
+		200000000000000000000428 /* DialerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000427 /* DialerView.swift */; };
+		20000000000000000000042A /* KeypadButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000429 /* KeypadButton.swift */; };
+		20000000000000000000042C /* CallHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000042B /* CallHistoryView.swift */; };
+		20000000000000000000042E /* LeadsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000042D /* LeadsView.swift */; };
+		200000000000000000000430 /* MessagesHubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000042F /* MessagesHubView.swift */; };
+		200000000000000000000432 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000431 /* RootView.swift */; };
+		200000000000000000000434 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000433 /* SettingsView.swift */; };
+		200000000000000000000436 /* VoicemailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000435 /* VoicemailsView.swift */; };
+		200000000000000000000438 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000437 /* Assets.xcassets */; };
+		BLD_TWILIO_VOICE_PKG /* TwilioVoice in Frameworks */ = {isa = PBXBuildFile; productRef = PRD_TWILIO_VOICE_DEP /* TwilioVoice */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		APP_PRODUCT_REF /* CallVexa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CallVexa.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1000000000000000000003E9 /* CallVexaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CallVexaApp.swift"; path = "CallVexa/App/CallVexaApp.swift"; sourceTree = "<group>"; };
+		1000000000000000000003EB /* AuthSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AuthSessionManager.swift"; path = "CallVexa/Core/Auth/AuthSessionManager.swift"; sourceTree = "<group>"; };
+		1000000000000000000003ED /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "APIClient.swift"; path = "CallVexa/Core/Network/APIClient.swift"; sourceTree = "<group>"; };
+		1000000000000000000003EF /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "APIError.swift"; path = "CallVexa/Core/Network/APIError.swift"; sourceTree = "<group>"; };
+		1000000000000000000003F1 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Colors.swift"; path = "CallVexa/Core/Theme/Colors.swift"; sourceTree = "<group>"; };
+		1000000000000000000003F3 /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Typography.swift"; path = "CallVexa/Core/Theme/Typography.swift"; sourceTree = "<group>"; };
+		1000000000000000000003F5 /* Countries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Countries.swift"; path = "CallVexa/Core/Utils/Countries.swift"; sourceTree = "<group>"; };
+		1000000000000000000003F7 /* DateFormatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "DateFormatters.swift"; path = "CallVexa/Core/Utils/DateFormatters.swift"; sourceTree = "<group>"; };
+		1000000000000000000003F9 /* PhoneNumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PhoneNumberFormatter.swift"; path = "CallVexa/Core/Utils/PhoneNumberFormatter.swift"; sourceTree = "<group>"; };
+		1000000000000000000003FB /* AudioDeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AudioDeviceManager.swift"; path = "CallVexa/Core/Voice/AudioDeviceManager.swift"; sourceTree = "<group>"; };
+		1000000000000000000003FD /* CallKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CallKitManager.swift"; path = "CallVexa/Core/Voice/CallKitManager.swift"; sourceTree = "<group>"; };
+		1000000000000000000003FF /* CallState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CallState.swift"; path = "CallVexa/Core/Voice/CallState.swift"; sourceTree = "<group>"; };
+		100000000000000000000401 /* PushKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PushKitManager.swift"; path = "CallVexa/Core/Voice/PushKitManager.swift"; sourceTree = "<group>"; };
+		100000000000000000000403 /* VoiceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "VoiceService.swift"; path = "CallVexa/Core/Voice/VoiceService.swift"; sourceTree = "<group>"; };
+		100000000000000000000405 /* AnalyticsSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AnalyticsSummary.swift"; path = "CallVexa/Models/AnalyticsSummary.swift"; sourceTree = "<group>"; };
+		100000000000000000000407 /* CallRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CallRecord.swift"; path = "CallVexa/Models/CallRecord.swift"; sourceTree = "<group>"; };
+		100000000000000000000409 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Contact.swift"; path = "CallVexa/Models/Contact.swift"; sourceTree = "<group>"; };
+		10000000000000000000040B /* LeadModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "LeadModel.swift"; path = "CallVexa/Models/LeadModel.swift"; sourceTree = "<group>"; };
+		10000000000000000000040D /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SettingsModel.swift"; path = "CallVexa/Models/SettingsModel.swift"; sourceTree = "<group>"; };
+		10000000000000000000040F /* SMSModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SMSModel.swift"; path = "CallVexa/Models/SMSModel.swift"; sourceTree = "<group>"; };
+		100000000000000000000411 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "User.swift"; path = "CallVexa/Models/User.swift"; sourceTree = "<group>"; };
+		100000000000000000000413 /* VoicemailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "VoicemailModel.swift"; path = "CallVexa/Models/VoicemailModel.swift"; sourceTree = "<group>"; };
+		100000000000000000000415 /* VoiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "VoiceModel.swift"; path = "CallVexa/Models/VoiceModel.swift"; sourceTree = "<group>"; };
+		100000000000000000000417 /* WhatsAppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "WhatsAppModel.swift"; path = "CallVexa/Models/WhatsAppModel.swift"; sourceTree = "<group>"; };
+		100000000000000000000419 /* AgentWorkstationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AgentWorkstationView.swift"; path = "CallVexa/Views/Agent/AgentWorkstationView.swift"; sourceTree = "<group>"; };
+		10000000000000000000041B /* AnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AnalyticsView.swift"; path = "CallVexa/Views/Analytics/AnalyticsView.swift"; sourceTree = "<group>"; };
+		10000000000000000000041D /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "LoginView.swift"; path = "CallVexa/Views/Auth/LoginView.swift"; sourceTree = "<group>"; };
+		10000000000000000000041F /* UIComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIComponents.swift"; path = "CallVexa/Views/Common/UIComponents.swift"; sourceTree = "<group>"; };
+		100000000000000000000421 /* ContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ContactsView.swift"; path = "CallVexa/Views/Contacts/ContactsView.swift"; sourceTree = "<group>"; };
+		100000000000000000000423 /* ActiveCallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ActiveCallView.swift"; path = "CallVexa/Views/Dialer/ActiveCallView.swift"; sourceTree = "<group>"; };
+		100000000000000000000425 /* CountryPickerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CountryPickerSheet.swift"; path = "CallVexa/Views/Dialer/CountryPickerSheet.swift"; sourceTree = "<group>"; };
+		100000000000000000000427 /* DialerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "DialerView.swift"; path = "CallVexa/Views/Dialer/DialerView.swift"; sourceTree = "<group>"; };
+		100000000000000000000429 /* KeypadButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "KeypadButton.swift"; path = "CallVexa/Views/Dialer/KeypadButton.swift"; sourceTree = "<group>"; };
+		10000000000000000000042B /* CallHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CallHistoryView.swift"; path = "CallVexa/Views/History/CallHistoryView.swift"; sourceTree = "<group>"; };
+		10000000000000000000042D /* LeadsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "LeadsView.swift"; path = "CallVexa/Views/Leads/LeadsView.swift"; sourceTree = "<group>"; };
+		10000000000000000000042F /* MessagesHubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "MessagesHubView.swift"; path = "CallVexa/Views/Messages/MessagesHubView.swift"; sourceTree = "<group>"; };
+		100000000000000000000431 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "RootView.swift"; path = "CallVexa/Views/RootView.swift"; sourceTree = "<group>"; };
+		100000000000000000000433 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SettingsView.swift"; path = "CallVexa/Views/Settings/SettingsView.swift"; sourceTree = "<group>"; };
+		100000000000000000000435 /* VoicemailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "VoicemailsView.swift"; path = "CallVexa/Views/Voicemails/VoicemailsView.swift"; sourceTree = "<group>"; };
+		100000000000000000000437 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Assets.xcassets"; path = "CallVexa/Resources/Assets.xcassets"; sourceTree = "<group>"; };
+		100000000000000000000439 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info.plist"; path = "CallVexa/Resources/Info.plist"; sourceTree = "<group>"; };
+		10000000000000000000043A /* CallVexa.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = "CallVexa.entitlements"; path = "CallVexa/Resources/CallVexa.entitlements"; sourceTree = "<group>"; };
+		10000000000000000000043B /* ExportOptions.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "ExportOptions.plist"; path = "CallVexa/ExportOptions.plist"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FRAMEWORKS_BUILD_PHASE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BLD_TWILIO_VOICE_PKG /* TwilioVoice in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		MAIN_GROUP = {
+			isa = PBXGroup;
+			children = (
+				CALLVEXA_SRC_GROUP /* CallVexa */,
+				PRODUCTS_GROUP /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		PRODUCTS_GROUP /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				APP_PRODUCT_REF /* CallVexa.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CALLVEXA_SRC_GROUP /* CallVexa */ = {
+			isa = PBXGroup;
+			children = (
+				1000000000000000000003E9 /* CallVexaApp.swift */,
+				1000000000000000000003EB /* AuthSessionManager.swift */,
+				1000000000000000000003ED /* APIClient.swift */,
+				1000000000000000000003EF /* APIError.swift */,
+				1000000000000000000003F1 /* Colors.swift */,
+				1000000000000000000003F3 /* Typography.swift */,
+				1000000000000000000003F5 /* Countries.swift */,
+				1000000000000000000003F7 /* DateFormatters.swift */,
+				1000000000000000000003F9 /* PhoneNumberFormatter.swift */,
+				1000000000000000000003FB /* AudioDeviceManager.swift */,
+				1000000000000000000003FD /* CallKitManager.swift */,
+				1000000000000000000003FF /* CallState.swift */,
+				100000000000000000000401 /* PushKitManager.swift */,
+				100000000000000000000403 /* VoiceService.swift */,
+				100000000000000000000405 /* AnalyticsSummary.swift */,
+				100000000000000000000407 /* CallRecord.swift */,
+				100000000000000000000409 /* Contact.swift */,
+				10000000000000000000040B /* LeadModel.swift */,
+				10000000000000000000040D /* SettingsModel.swift */,
+				10000000000000000000040F /* SMSModel.swift */,
+				100000000000000000000411 /* User.swift */,
+				100000000000000000000413 /* VoicemailModel.swift */,
+				100000000000000000000415 /* VoiceModel.swift */,
+				100000000000000000000417 /* WhatsAppModel.swift */,
+				100000000000000000000419 /* AgentWorkstationView.swift */,
+				10000000000000000000041B /* AnalyticsView.swift */,
+				10000000000000000000041D /* LoginView.swift */,
+				10000000000000000000041F /* UIComponents.swift */,
+				100000000000000000000421 /* ContactsView.swift */,
+				100000000000000000000423 /* ActiveCallView.swift */,
+				100000000000000000000425 /* CountryPickerSheet.swift */,
+				100000000000000000000427 /* DialerView.swift */,
+				100000000000000000000429 /* KeypadButton.swift */,
+				10000000000000000000042B /* CallHistoryView.swift */,
+				10000000000000000000042D /* LeadsView.swift */,
+				10000000000000000000042F /* MessagesHubView.swift */,
+				100000000000000000000431 /* RootView.swift */,
+				100000000000000000000433 /* SettingsView.swift */,
+				100000000000000000000435 /* VoicemailsView.swift */,
+				100000000000000000000437 /* Assets.xcassets */,
+				100000000000000000000439 /* Info.plist */,
+				10000000000000000000043A /* CallVexa.entitlements */,
+				10000000000000000000043B /* ExportOptions.plist */,
+			);
+			path = CallVexa;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CALLVEXA_APP_TARGET /* CallVexa */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = TARGET_CONFIG_LIST /* Build configuration list for PBXNativeTarget "CallVexa" */;
+			buildPhases = (
+				SOURCES_BUILD_PHASE /* Sources */,
+				FRAMEWORKS_BUILD_PHASE /* Frameworks */,
+				RESOURCES_BUILD_PHASE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CallVexa;
+			packageProductDependencies = (
+				PRD_TWILIO_VOICE_DEP /* TwilioVoice */,
+			);
+			productName = CallVexa;
+			productReference = APP_PRODUCT_REF /* CallVexa.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		ROOT_PROJECT_ID /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					CALLVEXA_APP_TARGET = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = PROJ_CONFIG_LIST /* Build configuration list for PBXProject "CallVexa" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = MAIN_GROUP;
+			packageReferences = (
+				PKG_TWILIO_VOICE_REF /* XCRemoteSwiftPackageReference "twilio-voice-ios" */,
+			);
+			productRefGroup = PRODUCTS_GROUP /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CALLVEXA_APP_TARGET /* CallVexa */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		RESOURCES_BUILD_PHASE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				200000000000000000000438 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		SOURCES_BUILD_PHASE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2000000000000000000003EA /* CallVexaApp.swift in Sources */,
+				2000000000000000000003EC /* AuthSessionManager.swift in Sources */,
+				2000000000000000000003EE /* APIClient.swift in Sources */,
+				2000000000000000000003F0 /* APIError.swift in Sources */,
+				2000000000000000000003F2 /* Colors.swift in Sources */,
+				2000000000000000000003F4 /* Typography.swift in Sources */,
+				2000000000000000000003F6 /* Countries.swift in Sources */,
+				2000000000000000000003F8 /* DateFormatters.swift in Sources */,
+				2000000000000000000003FA /* PhoneNumberFormatter.swift in Sources */,
+				2000000000000000000003FC /* AudioDeviceManager.swift in Sources */,
+				2000000000000000000003FE /* CallKitManager.swift in Sources */,
+				200000000000000000000400 /* CallState.swift in Sources */,
+				200000000000000000000402 /* PushKitManager.swift in Sources */,
+				200000000000000000000404 /* VoiceService.swift in Sources */,
+				200000000000000000000406 /* AnalyticsSummary.swift in Sources */,
+				200000000000000000000408 /* CallRecord.swift in Sources */,
+				20000000000000000000040A /* Contact.swift in Sources */,
+				20000000000000000000040C /* LeadModel.swift in Sources */,
+				20000000000000000000040E /* SettingsModel.swift in Sources */,
+				200000000000000000000410 /* SMSModel.swift in Sources */,
+				200000000000000000000412 /* User.swift in Sources */,
+				200000000000000000000414 /* VoicemailModel.swift in Sources */,
+				200000000000000000000416 /* VoiceModel.swift in Sources */,
+				200000000000000000000418 /* WhatsAppModel.swift in Sources */,
+				20000000000000000000041A /* AgentWorkstationView.swift in Sources */,
+				20000000000000000000041C /* AnalyticsView.swift in Sources */,
+				20000000000000000000041E /* LoginView.swift in Sources */,
+				200000000000000000000420 /* UIComponents.swift in Sources */,
+				200000000000000000000422 /* ContactsView.swift in Sources */,
+				200000000000000000000424 /* ActiveCallView.swift in Sources */,
+				200000000000000000000426 /* CountryPickerSheet.swift in Sources */,
+				200000000000000000000428 /* DialerView.swift in Sources */,
+				20000000000000000000042A /* KeypadButton.swift in Sources */,
+				20000000000000000000042C /* CallHistoryView.swift in Sources */,
+				20000000000000000000042E /* LeadsView.swift in Sources */,
+				200000000000000000000430 /* MessagesHubView.swift in Sources */,
+				200000000000000000000432 /* RootView.swift in Sources */,
+				200000000000000000000434 /* SettingsView.swift in Sources */,
+				200000000000000000000436 /* VoicemailsView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		PROJ_DEBUG_CFG /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		PROJ_RELEASE_CFG /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_OPTIMIZATION_LEVEL = s;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		TARGET_DEBUG_CFG /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CallVexa/Resources/CallVexa.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = CallVexa/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = us.callvexa.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		TARGET_RELEASE_CFG /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CallVexa/Resources/CallVexa.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = CallVexa/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = us.callvexa.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		PROJ_CONFIG_LIST /* Build configuration list for PBXProject "CallVexa" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				PROJ_DEBUG_CFG /* Debug */,
+				PROJ_RELEASE_CFG /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		TARGET_CONFIG_LIST /* Build configuration list for PBXNativeTarget "CallVexa" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				TARGET_DEBUG_CFG /* Debug */,
+				TARGET_RELEASE_CFG /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		PKG_TWILIO_VOICE_REF /* XCRemoteSwiftPackageReference "twilio-voice-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/twilio/twilio-voice-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.11.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		PRD_TWILIO_VOICE_DEP /* TwilioVoice */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = PKG_TWILIO_VOICE_REF /* XCRemoteSwiftPackageReference "twilio-voice-ios" */;
+			productName = TwilioVoice;
+		};
+/* End XCSwiftPackageProductDependency section */
+
+	};
+	rootObject = ROOT_PROJECT_ID /* Project object */; 
+}

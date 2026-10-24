@@ -1,0 +1,42 @@
+name: CallVexa
+options:
+  bundleIdPrefix: us.callvexa
+  deploymentTarget:
+    iOS: "16.0"
+  xcodeVersion: "15.0"
+  generateEmptyDirectories: true
+
+packages:
+  TwilioVoice:
+    url: https://github.com/twilio/twilio-voice-ios
+    from: "6.11.0"
+
+targets:
+  CallVexa:
+    type: application
+    platform: iOS
+    deploymentTarget: "16.0"
+    sources:
+      - path: CallVexa
+    dependencies:
+      - package: TwilioVoice
+        product: TwilioVoice
+    info:
+      path: CallVexa/Resources/Info.plist
+    entitlements:
+      path: CallVexa/Resources/CallVexa.entitlements
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: us.callvexa.app
+        PRODUCT_NAME: CallVexa
+        MARKETING_VERSION: 1.0.0
+        CURRENT_PROJECT_VERSION: 1
+        TARGETED_DEVICE_FAMILY: "1,2"
+        SWIFT_VERSION: "5.9"
+        ENABLE_BITCODE: NO
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        CODE_SIGN_STYLE: Automatic
+        INFOPLIST_FILE: CallVexa/Resources/Info.plist
+        CODE_SIGN_ENTITLEMENTS: CallVexa/Resources/CallVexa.entitlements
+        ENABLE_USER_SCRIPT_SANDBOXING: NO
