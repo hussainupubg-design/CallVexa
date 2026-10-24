@@ -21,11 +21,8 @@
   "author": "CallVexa Team",
   "license": "UNLICENSED",
   "dependencies": {
-    "@capacitor/app": "^7.0.0",
     "@capacitor/cli": "^7.6.9",
     "@capacitor/core": "^7.6.9",
-    "@capacitor/ios": "^7.6.9",
-    "@capacitor/keyboard": "^7.0.0",
-    "@capacitor/network": "^7.0.0"
+    "@capacitor/ios": "^7.6.9"
   }
 }
