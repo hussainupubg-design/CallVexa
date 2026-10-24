@@ -99,6 +99,7 @@ final class VoiceService: NSObject, ObservableObject {
         self.durationSeconds = 0
         self.isMuted = false
         self.isSpeaker = false
+        AudioDeviceManager.shared.setSpeaker(enabled: false)
         
         let isAdmin = AuthSessionManager.shared.currentUser?.isAdmin ?? true
         let authEndpoint = isAdmin ? "/api/voice/authorize" : "/api/agent/authorize"
@@ -136,12 +137,28 @@ final class VoiceService: NSObject, ObservableObject {
         } catch let apiError as APIError {
             self.releaseStuckCall()
             self.callState = .failed(message: apiError.localizedDescription)
+            if !self.activeNumber.isEmpty {
+                CallHistoryManager.shared.recordCall(
+                    toNumber: self.activeNumber,
+                    status: "failed",
+                    durationSec: 0,
+                    direction: "outbound"
+                )
+            }
             if let uuid = self.currentCallUUID {
                 CallKitManager.shared.reportCallEnded(uuid: uuid, reason: .failed)
             }
         } catch {
             self.releaseStuckCall()
             self.callState = .failed(message: error.localizedDescription)
+            if !self.activeNumber.isEmpty {
+                CallHistoryManager.shared.recordCall(
+                    toNumber: self.activeNumber,
+                    status: "failed",
+                    durationSec: 0,
+                    direction: "outbound"
+                )
+            }
             if let uuid = self.currentCallUUID {
                 CallKitManager.shared.reportCallEnded(uuid: uuid, reason: .failed)
             }
@@ -182,8 +199,14 @@ final class VoiceService: NSObject, ObservableObject {
     }
     
     func toggleSpeaker() {
-        AudioDeviceManager.shared.toggleSpeaker()
-        self.isSpeaker = AudioDeviceManager.shared.isSpeakerOn
+        let target = !self.isSpeaker
+        self.isSpeaker = target
+        AudioDeviceManager.shared.setSpeaker(enabled: target)
+    }
+    
+    func setSpeaker(_ enable: Bool) {
+        self.isSpeaker = enable
+        AudioDeviceManager.shared.setSpeaker(enabled: enable)
     }
     
     func hangup() {
@@ -224,12 +247,21 @@ final class VoiceService: NSObject, ObservableObject {
                 status: status,
                 date: Date()
             )
+            // Persist immediately to device storage
+            CallHistoryManager.shared.recordCall(
+                toNumber: num,
+                status: status.lowercased(),
+                durationSec: dur,
+                direction: "outbound"
+            )
         }
         
         #if canImport(TwilioVoice)
         self.activeCall = nil
         #endif
         self.isMuted = false
+        self.isSpeaker = false
+        AudioDeviceManager.shared.setSpeaker(enabled: false)
         self.callState = .completed(summary: "\(status) (\(DateFormatters.formatDuration(dur)))")
         
         if let uuid = currentCallUUID {

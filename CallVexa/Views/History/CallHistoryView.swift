@@ -1,15 +1,13 @@
 import SwiftUI
 
 struct CallHistoryView: View {
+    @ObservedObject var historyManager = CallHistoryManager.shared
     @ObservedObject var voiceService = VoiceService.shared
     
-    @State private var calls: [CallRecord] = []
     @State private var isLoading: Bool = false
-    @State private var errorMessage: String? = nil
     @State private var searchQuery: String = ""
     @State private var selectedStatus: String = ""
-    @State private var page: Int = 0
-    @State private var totalCalls: Int = 0
+    @State private var showClearConfirm: Bool = false
     
     let statuses = [
         ("All", ""),
@@ -20,33 +18,62 @@ struct CallHistoryView: View {
         ("Failed", "failed")
     ]
     
+    private var displayedCalls: [CallRecord] {
+        historyManager.calls.filter { call in
+            let matchesQuery = searchQuery.isEmpty ||
+                call.toNumber.contains(searchQuery) ||
+                (call.country?.localizedCaseInsensitiveContains(searchQuery) ?? false) ||
+                (call.startedAt?.localizedCaseInsensitiveContains(searchQuery) ?? false)
+            
+            let matchesStatus: Bool
+            if selectedStatus.isEmpty {
+                matchesStatus = true
+            } else if selectedStatus == "failed" {
+                matchesStatus = call.isFailed
+            } else {
+                matchesStatus = call.status.lowercased() == selectedStatus.lowercased()
+            }
+            
+            return matchesQuery && matchesStatus
+        }
+    }
+    
     var body: some View {
         VStack(spacing: 0) {
-            PageHeaderView(title: "Call History", subtitle: "Real call records from your cloud account") {
-                Button(action: {
-                    Task { await loadCalls() }
-                }) {
-                    Image(systemName: "arrow.clockwise")
-                        .foregroundColor(.cvPrimaryLight)
-                        .font(.system(size: 16, weight: .semibold))
+            // Header
+            PageHeaderView(
+                title: "Call History",
+                subtitle: "\(historyManager.calls.count) recorded call\(historyManager.calls.count == 1 ? "" : "s")"
+            ) {
+                HStack(spacing: 12) {
+                    if !historyManager.calls.isEmpty {
+                        Button(action: { showClearConfirm = true }) {
+                            Image(systemName: "trash")
+                                .foregroundColor(.cvTextMuted)
+                                .font(.system(size: 15))
+                        }
+                    }
+                    
+                    Button(action: {
+                        Task { await syncWithServer() }
+                    }) {
+                        Image(systemName: "arrow.clockwise")
+                            .foregroundColor(.cvPrimaryLight)
+                            .font(.system(size: 15, weight: .semibold))
+                    }
                 }
             }
             
-            // Search and Status Filters
+            // Search Bar & Filter Chips
             VStack(spacing: 10) {
                 HStack(spacing: 10) {
                     Image(systemName: "magnifyingglass")
                         .foregroundColor(.cvTextMuted)
-                    TextField("Search phone numbers…", text: $searchQuery)
+                    TextField("Search phone numbers or dates…", text: $searchQuery)
                         .foregroundColor(.cvTextPrimary)
-                        .onSubmit {
-                            Task { await loadCalls() }
-                        }
+                    
                     if !searchQuery.isEmpty {
-                        Button(action: {
-                            searchQuery = ""
-                            Task { await loadCalls() }
-                        }) {
+                        Button(action: { searchQuery = "" }) {
                             Image(systemName: "xmark.circle.fill")
                                 .foregroundColor(.cvTextMuted)
                         }
@@ -62,7 +89,6 @@ struct CallHistoryView: View {
                         ForEach(statuses, id: \.1) { (label, value) in
                             Button(action: {
                                 selectedStatus = value
-                                Task { await loadCalls() }
                             }) {
                                 Text(label)
                                     .font(.system(size: 12, weight: .medium))
@@ -80,52 +106,57 @@ struct CallHistoryView: View {
             .padding(.bottom, 12)
             
             // Calls List
-            if isLoading && calls.isEmpty {
+            if historyManager.calls.isEmpty && isLoading {
                 Spacer()
                 ProgressView().tint(.cvPrimaryLight)
                 Spacer()
-            } else if calls.isEmpty {
+            } else if displayedCalls.isEmpty {
                 EmptyStateView(
                     icon: "phone.badge.clock",
-                    title: "No Calls Recorded",
-                    message: "Completed and attempted calls will appear here in real-time."
+                    title: historyManager.calls.isEmpty ? "No Calls Recorded" : "No Matching Calls",
+                    message: historyManager.calls.isEmpty
+                        ? "Every call made or received will automatically appear here with duration and one-tap redial."
+                        : "Try clearing your search query or filter."
                 )
                 Spacer()
             } else {
                 List {
-                    ForEach(calls) { call in
+                    ForEach(displayedCalls) { call in
                         HStack(spacing: 12) {
                             // Status Icon
                             ZStack {
                                 Circle()
                                     .fill(call.isSuccess ? Color.cvGreen.opacity(0.15) : Color.cvRed.opacity(0.15))
-                                    .frame(width: 40, height: 40)
+                                    .frame(width: 42, height: 42)
                                 Image(systemName: call.isSuccess ? "phone.arrow.up.right.fill" : "phone.down.circle.fill")
                                     .foregroundColor(call.isSuccess ? .cvGreen : .cvRed)
-                                    .font(.system(size: 16))
+                                    .font(.system(size: 17))
                             }
                             
                             VStack(alignment: .leading, spacing: 3) {
                                 Text(PhoneNumberFormatter.formatForDisplay(call.toNumber))
-                                    .font(.system(size: 15, weight: .semibold))
+                                    .font(.system(size: 15, weight: .bold, design: .rounded))
                                     .foregroundColor(.cvTextPrimary)
                                 
                                 HStack(spacing: 6) {
-                                    if let country = call.country {
-                                        Text(country)
-                                            .font(.system(size: 11, weight: .bold))
-                                            .foregroundColor(.cvCyan)
-                                    }
+                                    // Status Badge Text
+                                    Text(call.status.capitalized)
+                                        .font(.system(size: 11, weight: .bold))
+                                        .foregroundColor(call.isSuccess ? .cvGreenLight : .cvRed)
                                     
-                                    if let dur = call.duration {
+                                    if let dur = call.duration, dur > 0 {
                                         Text("• \(DateFormatters.formatDuration(dur))")
                                             .font(.system(size: 11))
                                             .foregroundColor(.cvTextSecondary)
                                     }
                                     
-                                    if let price = call.price, price > 0 {
-                                        Text("• $\(String(format: "%.3f", price))")
-                                            .font(.system(size: 11, weight: .medium))
+                                    if let started = call.startedAt, !started.isEmpty {
+                                        Text("• \(started)")
+                                            .font(.system(size: 11))
+                                            .foregroundColor(.cvTextMuted)
+                                    } else if let created = call.createdAt {
+                                        Text("• \(DateFormatters.relativeTimestamp(created))")
+                                            .font(.system(size: 11))
                                             .foregroundColor(.cvTextMuted)
                                     }
                                 }
@@ -133,26 +164,28 @@ struct CallHistoryView: View {
                             
                             Spacer()
                             
-                            // Call Action Button
+                            // One-Tap Instant Redial Button
                             Button(action: {
+                                let impact = UIImpactFeedbackGenerator(style: .medium)
+                                impact.impactOccurred()
                                 Task {
                                     await voiceService.placeCall(to: call.toNumber)
                                 }
                             }) {
                                 Image(systemName: "phone.fill")
                                     .foregroundColor(.cvGreen)
-                                    .font(.system(size: 14))
-                                    .padding(8)
-                                    .background(Color.cvGreen.opacity(0.12))
+                                    .font(.system(size: 15))
+                                    .padding(10)
+                                    .background(Color.cvGreen.opacity(0.15))
                                     .clipShape(Circle())
                             }
                             .buttonStyle(BorderlessButtonStyle())
                         }
-                        .padding(.vertical, 6)
+                        .padding(.vertical, 4)
                         .listRowBackground(Color.cvSurface)
-                        .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                        .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                             Button(role: .destructive) {
-                                Task { await deleteCall(call.id) }
+                                historyManager.deleteCall(id: call.id)
                             } label: {
                                 Label("Delete", systemImage: "trash")
                             }
@@ -162,43 +195,64 @@ struct CallHistoryView: View {
                 .listStyle(.plain)
                 .scrollContentBackground(.hidden)
                 .refreshable {
-                    await loadCalls()
+                    await syncWithServer()
                 }
             }
         }
         .cvBackground()
+        .confirmationDialog(
+            "Clear all call history?",
+            isPresented: $showClearConfirm,
+            titleVisibility: .visible
+        ) {
+            Button("Clear All Calls", role: .destructive) {
+                historyManager.clearAll()
+            }
+            Button("Cancel", role: .cancel) {}
+        }
         .task {
-            await loadCalls()
+            historyManager.loadFromStorage()
+            await syncWithServer()
         }
     }
     
-    private func loadCalls() async {
+    private func syncWithServer() async {
         isLoading = true
-        errorMessage = nil
+        defer { isLoading = false }
+        
+        // 1. Try agent calls endpoint first
         do {
-            var queryParams: [String: String] = [
-                "page": String(page),
-                "limit": "40"
-            ]
-            if !searchQuery.isEmpty { queryParams["q"] = searchQuery }
-            if !selectedStatus.isEmpty { queryParams["status"] = selectedStatus }
-            
-            let res: CallsResponse = try await APIClient.shared.get("/api/calls", query: queryParams)
-            self.calls = res.rows
-            self.totalCalls = res.total ?? res.rows.count
+            struct AgentCallsResp: Codable {
+                let ok: Bool
+                let rows: [AgentCallRecord]?
+            }
+            let res: AgentCallsResp = try await APIClient.shared.get("/api/agent/calls", query: ["limit": "50"])
+            if let agentRows = res.rows, !agentRows.isEmpty {
+                let mapped = agentRows.map { r in
+                    CallRecord(
+                        id: r.id,
+                        toNumber: r.toNumber,
+                        status: r.status,
+                        duration: r.durationSec,
+                        country: nil,
+                        direction: "outbound",
+                        startedAt: r.createdAt != nil ? DateFormatters.formatTimestamp(r.createdAt!) : nil,
+                        createdAt: r.createdAt
+                    )
+                }
+                historyManager.mergeServerCalls(mapped)
+                return
+            }
         } catch {
-            self.errorMessage = error.localizedDescription
+            // Ignore and fall through to admin endpoint
         }
-        isLoading = false
-    }
-    
-    private func deleteCall(_ id: Int) async {
+        
+        // 2. Try admin calls endpoint
         do {
-            struct DeleteResp: Codable { let ok: Bool }
-            let _: DeleteResp = try await APIClient.shared.delete("/api/calls/\(id)")
-            calls.removeAll(where: { $0.id == id })
+            let res: CallsResponse = try await APIClient.shared.get("/api/calls", query: ["limit": "50"])
+            historyManager.mergeServerCalls(res.rows)
         } catch {
-            print("Failed to delete call record: \(error)")
+            // Offline or unauthenticated — local calls are safely preserved
         }
     }
 }

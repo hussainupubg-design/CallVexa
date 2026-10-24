@@ -3,6 +3,7 @@ import SwiftUI
 struct AgentWorkstationView: View {
     @ObservedObject var voiceService = VoiceService.shared
     @ObservedObject var authManager = AuthSessionManager.shared
+    @ObservedObject var historyManager = CallHistoryManager.shared
     
     @State private var inputNumber: String = ""
     @State private var selectedCountry: CountryItem = CountryDirectory.defaultCountry()
@@ -13,10 +14,6 @@ struct AgentWorkstationView: View {
     @State private var queueSize: Int = 0
     @State private var isAnsweringQueue: Bool = false
     @State private var queueMessage: String? = nil
-    
-    // Agent calls history
-    @State private var recentCalls: [AgentCallRecord] = []
-    @State private var isLoadingCalls: Bool = false
     
     var body: some View {
         ScrollView {
@@ -236,14 +233,21 @@ struct AgentWorkstationView: View {
                 .padding(.top, 4)
                 
                 // Recent Agent Calls
-                if !recentCalls.isEmpty {
+                let recent = historyManager.recentCalls(limit: 5)
+                if !recent.isEmpty {
                     VStack(alignment: .leading, spacing: 10) {
-                        Text("Recent Calls")
-                            .font(.system(size: 15, weight: .bold))
-                            .foregroundColor(.cvTextPrimary)
+                        HStack {
+                            Text("Recent Calls")
+                                .font(.system(size: 15, weight: .bold))
+                                .foregroundColor(.cvTextPrimary)
+                            Spacer()
+                            Text("\(recent.count) calls")
+                                .font(.system(size: 11))
+                                .foregroundColor(.cvTextMuted)
+                        }
                         
                         VStack(spacing: 8) {
-                            ForEach(recentCalls.prefix(5)) { call in
+                            ForEach(recent) { call in
                                 HStack {
                                     Image(systemName: call.isSuccess ? "phone.arrow.up.right.fill" : "phone.down.fill")
                                         .foregroundColor(call.isSuccess ? .cvGreen : .cvRed)
@@ -255,7 +259,7 @@ struct AgentWorkstationView: View {
                                     
                                     Spacer()
                                     
-                                    if let dur = call.durationSec {
+                                    if let dur = call.duration, dur > 0 {
                                         Text(DateFormatters.formatDuration(dur))
                                             .font(.system(size: 12))
                                             .foregroundColor(.cvTextSecondary)
@@ -274,7 +278,7 @@ struct AgentWorkstationView: View {
                                 }
                                 .padding(.vertical, 4)
                                 
-                                if call.id != recentCalls.prefix(5).last?.id {
+                                if call.id != recent.last?.id {
                                     Divider().background(Color.cvBorder)
                                 }
                             }
@@ -347,13 +351,27 @@ struct AgentWorkstationView: View {
     }
     
     private func loadRecentCalls() async {
+        historyManager.loadFromStorage()
         do {
             struct AgentCallsResp: Codable {
                 let ok: Bool
                 let rows: [AgentCallRecord]?
             }
             let res: AgentCallsResp = try await APIClient.shared.get("/api/agent/calls", query: ["limit": "10"])
-            self.recentCalls = res.rows ?? []
+            if let rows = res.rows, !rows.isEmpty {
+                let mapped = rows.map { r in
+                    CallRecord(
+                        id: r.id,
+                        toNumber: r.toNumber,
+                        status: r.status,
+                        duration: r.durationSec,
+                        country: nil,
+                        direction: "outbound",
+                        createdAt: r.createdAt
+                    )
+                }
+                historyManager.mergeServerCalls(mapped)
+            }
         } catch {
             // Best effort
         }

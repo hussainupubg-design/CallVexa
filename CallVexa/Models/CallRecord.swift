@@ -39,6 +39,34 @@ struct CallRecord: Identifiable, Codable {
         let s = status.lowercased()
         return s == "failed" || s == "busy" || s == "no-answer" || s == "canceled"
     }
+    
+    init(
+        id: Int,
+        toNumber: String,
+        status: String,
+        duration: Int? = nil,
+        country: String? = nil,
+        direction: String = "outbound",
+        twilioSid: String? = nil,
+        startedAt: String? = nil,
+        price: Double? = nil,
+        callerId: String? = nil,
+        recordingUrl: String? = nil,
+        createdAt: Int64? = nil
+    ) {
+        self.id = id
+        self.twilioSid = twilioSid
+        self.toNumber = toNumber
+        self.country = country
+        self.status = status
+        self.startedAt = startedAt
+        self.duration = duration
+        self.price = price
+        self.callerId = callerId
+        self.direction = direction
+        self.recordingUrl = recordingUrl
+        self.createdAt = createdAt
+    }
 }
 
 struct CallsResponse: Codable {

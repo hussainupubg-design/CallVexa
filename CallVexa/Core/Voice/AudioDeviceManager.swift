@@ -7,6 +7,8 @@ final class AudioDeviceManager: ObservableObject {
     @Published var isSpeakerOn: Bool = false
     @Published var currentRouteName: String = "Receiver"
     
+    private(set) var speakerState: Bool = false
+    
     private init() {
         setupObservers()
     }
@@ -35,7 +37,11 @@ final class AudioDeviceManager: ObservableObject {
                 options: [.allowBluetooth, .allowBluetoothA2DP, .duckOthers]
             )
             try session.setActive(true, options: .notifyOthersOnDeactivation)
-            updateCurrentRoute()
+            // Ensure default at call start is always the earpiece (receiver)
+            try session.overrideOutputAudioPort(.none)
+            self.speakerState = false
+            self.notifyRouteUpdated(isSpeaker: false, routeName: "Receiver")
+            print("[AudioDeviceManager] Call audio session active, default route: Earpiece")
         } catch {
             print("[AudioDeviceManager] Failed to configure audio session: \(error)")
         }
@@ -46,45 +52,47 @@ final class AudioDeviceManager: ObservableObject {
         do {
             try session.overrideOutputAudioPort(.none)
             try session.setActive(false, options: .notifyOthersOnDeactivation)
-            DispatchQueue.main.async {
-                self.isSpeakerOn = false
-            }
+            self.speakerState = false
+            self.notifyRouteUpdated(isSpeaker: false, routeName: "Receiver")
+            print("[AudioDeviceManager] Audio session deactivated")
         } catch {
             print("[AudioDeviceManager] Failed to deactivate audio session: \(error)")
-        }
-    }
-    
-    func toggleSpeaker() {
-        let session = AVAudioSession.sharedInstance()
-        do {
-            if isSpeakerOn {
-                try session.overrideOutputAudioPort(.none)
-                DispatchQueue.main.async {
-                    self.isSpeakerOn = false
-                    self.updateCurrentRoute()
-                }
-            } else {
-                try session.overrideOutputAudioPort(.speaker)
-                DispatchQueue.main.async {
-                    self.isSpeakerOn = true
-                    self.currentRouteName = "Speaker"
-                }
-            }
-        } catch {
-            print("[AudioDeviceManager] Failed to toggle speaker: \(error)")
         }
     }
     
     func setSpeaker(enabled: Bool) {
         let session = AVAudioSession.sharedInstance()
         do {
-            try session.overrideOutputAudioPort(enabled ? .speaker : .none)
-            DispatchQueue.main.async {
-                self.isSpeakerOn = enabled
-                self.updateCurrentRoute()
+            if enabled {
+                print("[AudioDeviceManager] >>> Switching to LOUDSPEAKER (.speaker)")
+                try session.overrideOutputAudioPort(.speaker)
+            } else {
+                print("[AudioDeviceManager] >>> Switching to EARPIECE (.none)")
+                try session.overrideOutputAudioPort(.none)
             }
+            self.speakerState = enabled
+            self.notifyRouteUpdated(isSpeaker: enabled, routeName: enabled ? "Speaker" : "Receiver")
         } catch {
             print("[AudioDeviceManager] Set speaker error: \(error)")
+        }
+    }
+    
+    @discardableResult
+    func toggleSpeaker() -> Bool {
+        let target = !self.speakerState
+        setSpeaker(enabled: target)
+        return self.speakerState
+    }
+    
+    private func notifyRouteUpdated(isSpeaker: Bool, routeName: String) {
+        if Thread.isMainThread {
+            self.isSpeakerOn = isSpeaker
+            self.currentRouteName = routeName
+        } else {
+            DispatchQueue.main.async {
+                self.isSpeakerOn = isSpeaker
+                self.currentRouteName = routeName
+            }
         }
     }
     
@@ -95,20 +103,17 @@ final class AudioDeviceManager: ObservableObject {
             return
         }
         
-        DispatchQueue.main.async {
+        switch reason {
+        case .newDeviceAvailable:
+            print("[AudioDeviceManager] External accessory connected")
             self.updateCurrentRoute()
-            switch reason {
-            case .newDeviceAvailable:
-                print("[AudioDeviceManager] Headset or Bluetooth connected")
-            case .oldDeviceUnavailable:
-                print("[AudioDeviceManager] Headset or Bluetooth disconnected, restoring default route")
-                // If headphones were unplugged, fallback to receiver or speaker based on current state
-                if self.isSpeakerOn {
-                    try? AVAudioSession.sharedInstance().overrideOutputAudioPort(.speaker)
-                }
-            default:
-                break
-            }
+        case .oldDeviceUnavailable:
+            print("[AudioDeviceManager] Accessory disconnected, restoring: \(self.speakerState ? "Speaker" : "Receiver")")
+            self.setSpeaker(enabled: self.speakerState)
+        case .categoryChange, .routeConfigurationChange:
+            self.updateCurrentRoute()
+        default:
+            self.updateCurrentRoute()
         }
     }
     
@@ -121,7 +126,7 @@ final class AudioDeviceManager: ObservableObject {
         
         switch type {
         case .began:
-            print("[AudioDeviceManager] Audio interruption began (e.g. cellular call or Siri)")
+            print("[AudioDeviceManager] Audio interruption began")
         case .ended:
             if let optionsValue = userInfo[AVAudioSessionInterruptionOptionKey] as? UInt {
                 let options = AVAudioSession.InterruptionOptions(rawValue: optionsValue)
@@ -137,22 +142,22 @@ final class AudioDeviceManager: ObservableObject {
     private func updateCurrentRoute() {
         let currentRoute = AVAudioSession.sharedInstance().currentRoute
         if let output = currentRoute.outputs.first {
+            let isSpeaker = (output.portType == .builtInSpeaker)
+            let name: String
             switch output.portType {
             case .builtInSpeaker:
-                self.currentRouteName = "Speaker"
-                self.isSpeakerOn = true
+                name = "Speaker"
             case .builtInReceiver:
-                self.currentRouteName = "Receiver"
-                self.isSpeakerOn = false
+                name = "Receiver"
             case .headphones, .headsetMic:
-                self.currentRouteName = "Headphones"
-                self.isSpeakerOn = false
+                name = "Headphones"
             case .bluetoothA2DP, .bluetoothHFP, .bluetoothLE:
-                self.currentRouteName = output.portName.isEmpty ? "Bluetooth" : output.portName
-                self.isSpeakerOn = false
+                name = output.portName.isEmpty ? "Bluetooth" : output.portName
             default:
-                self.currentRouteName = output.portName
+                name = output.portName
             }
+            self.speakerState = isSpeaker
+            self.notifyRouteUpdated(isSpeaker: isSpeaker, routeName: name)
         }
     }
 }

@@ -156,20 +156,24 @@ struct ActiveCallView: View {
                         }
                     }
                     
-                    // Speaker Button
-                    Button(action: { voiceService.toggleSpeaker() }) {
+                    // Speaker Button (Loudspeaker vs Earpiece)
+                    Button(action: {
+                        let impact = UIImpactFeedbackGenerator(style: .medium)
+                        impact.impactOccurred()
+                        voiceService.toggleSpeaker()
+                    }) {
                         VStack(spacing: 8) {
                             Circle()
-                                .fill(voiceService.isSpeaker ? Color.white : Color.cvSurfaceElevated)
+                                .fill(voiceService.isSpeaker ? Color.cvGreen : Color.cvSurfaceElevated)
                                 .frame(width: 64, height: 64)
                                 .overlay(
                                     Image(systemName: voiceService.isSpeaker ? "speaker.wave.3.fill" : "speaker.wave.2.fill")
                                         .font(.system(size: 24))
-                                        .foregroundColor(voiceService.isSpeaker ? Color.cvBackground : Color.cvTextPrimary)
+                                        .foregroundColor(voiceService.isSpeaker ? .white : Color.cvTextPrimary)
                                 )
-                            Text(voiceService.isSpeaker ? "Speaker On" : "Speaker")
-                                .font(.system(size: 12, weight: .medium))
-                                .foregroundColor(.cvTextSecondary)
+                            Text(voiceService.isSpeaker ? "Speaker: On" : "Speaker: Off")
+                                .font(.system(size: 11, weight: .bold))
+                                .foregroundColor(voiceService.isSpeaker ? .cvGreenLight : .cvTextSecondary)
                         }
                     }
                 }

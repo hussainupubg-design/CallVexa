@@ -17,36 +17,37 @@
 		2000000000000000000003F8 /* DateFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000003F7 /* DateFormatters.swift */; };
 		2000000000000000000003FA /* PhoneNumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000003F9 /* PhoneNumberFormatter.swift */; };
 		2000000000000000000003FC /* AudioDeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000003FB /* AudioDeviceManager.swift */; };
-		2000000000000000000003FE /* CallKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000003FD /* CallKitManager.swift */; };
-		200000000000000000000400 /* CallState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000003FF /* CallState.swift */; };
-		200000000000000000000402 /* PushKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000401 /* PushKitManager.swift */; };
-		200000000000000000000404 /* VoiceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000403 /* VoiceService.swift */; };
-		200000000000000000000406 /* AnalyticsSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000405 /* AnalyticsSummary.swift */; };
-		200000000000000000000408 /* CallRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000407 /* CallRecord.swift */; };
-		20000000000000000000040A /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000409 /* Contact.swift */; };
-		20000000000000000000040C /* LeadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000040B /* LeadModel.swift */; };
-		20000000000000000000040E /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000040D /* SettingsModel.swift */; };
-		200000000000000000000410 /* SMSModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000040F /* SMSModel.swift */; };
-		200000000000000000000412 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000411 /* User.swift */; };
-		200000000000000000000414 /* VoicemailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000413 /* VoicemailModel.swift */; };
-		200000000000000000000416 /* VoiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000415 /* VoiceModel.swift */; };
-		200000000000000000000418 /* WhatsAppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000417 /* WhatsAppModel.swift */; };
-		20000000000000000000041A /* AgentWorkstationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000419 /* AgentWorkstationView.swift */; };
-		20000000000000000000041C /* AnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000041B /* AnalyticsView.swift */; };
-		20000000000000000000041E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000041D /* LoginView.swift */; };
-		200000000000000000000420 /* UIComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000041F /* UIComponents.swift */; };
-		200000000000000000000422 /* ContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000421 /* ContactsView.swift */; };
-		200000000000000000000424 /* ActiveCallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000423 /* ActiveCallView.swift */; };
-		200000000000000000000426 /* CountryPickerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000425 /* CountryPickerSheet.swift */; };
-		200000000000000000000428 /* DialerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000427 /* DialerView.swift */; };
-		20000000000000000000042A /* KeypadButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000429 /* KeypadButton.swift */; };
-		20000000000000000000042C /* CallHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000042B /* CallHistoryView.swift */; };
-		20000000000000000000042E /* LeadsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000042D /* LeadsView.swift */; };
-		200000000000000000000430 /* MessagesHubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000042F /* MessagesHubView.swift */; };
-		200000000000000000000432 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000431 /* RootView.swift */; };
-		200000000000000000000434 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000433 /* SettingsView.swift */; };
-		200000000000000000000436 /* VoicemailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000435 /* VoicemailsView.swift */; };
-		200000000000000000000438 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000437 /* Assets.xcassets */; };
+		2000000000000000000003FE /* CallHistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000003FD /* CallHistoryManager.swift */; };
+		200000000000000000000400 /* CallKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000003FF /* CallKitManager.swift */; };
+		200000000000000000000402 /* CallState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000401 /* CallState.swift */; };
+		200000000000000000000404 /* PushKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000403 /* PushKitManager.swift */; };
+		200000000000000000000406 /* VoiceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000405 /* VoiceService.swift */; };
+		200000000000000000000408 /* AnalyticsSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000407 /* AnalyticsSummary.swift */; };
+		20000000000000000000040A /* CallRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000409 /* CallRecord.swift */; };
+		20000000000000000000040C /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000040B /* Contact.swift */; };
+		20000000000000000000040E /* LeadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000040D /* LeadModel.swift */; };
+		200000000000000000000410 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000040F /* SettingsModel.swift */; };
+		200000000000000000000412 /* SMSModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000411 /* SMSModel.swift */; };
+		200000000000000000000414 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000413 /* User.swift */; };
+		200000000000000000000416 /* VoicemailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000415 /* VoicemailModel.swift */; };
+		200000000000000000000418 /* VoiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000417 /* VoiceModel.swift */; };
+		20000000000000000000041A /* WhatsAppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000419 /* WhatsAppModel.swift */; };
+		20000000000000000000041C /* AgentWorkstationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000041B /* AgentWorkstationView.swift */; };
+		20000000000000000000041E /* AnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000041D /* AnalyticsView.swift */; };
+		200000000000000000000420 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000041F /* LoginView.swift */; };
+		200000000000000000000422 /* UIComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000421 /* UIComponents.swift */; };
+		200000000000000000000424 /* ContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000423 /* ContactsView.swift */; };
+		200000000000000000000426 /* ActiveCallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000425 /* ActiveCallView.swift */; };
+		200000000000000000000428 /* CountryPickerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000427 /* CountryPickerSheet.swift */; };
+		20000000000000000000042A /* DialerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000429 /* DialerView.swift */; };
+		20000000000000000000042C /* KeypadButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000042B /* KeypadButton.swift */; };
+		20000000000000000000042E /* CallHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000042D /* CallHistoryView.swift */; };
+		200000000000000000000430 /* LeadsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000042F /* LeadsView.swift */; };
+		200000000000000000000432 /* MessagesHubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000431 /* MessagesHubView.swift */; };
+		200000000000000000000434 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000433 /* RootView.swift */; };
+		200000000000000000000436 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000435 /* SettingsView.swift */; };
+		200000000000000000000438 /* VoicemailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000437 /* VoicemailsView.swift */; };
+		20000000000000000000043A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000439 /* Assets.xcassets */; };
 		BLD_TWILIO_VOICE_PKG /* TwilioVoice in Frameworks */ = {isa = PBXBuildFile; productRef = PRD_TWILIO_VOICE_DEP /* TwilioVoice */; };
 /* End PBXBuildFile section */
 
@@ -62,39 +63,40 @@
 		1000000000000000000003F7 /* DateFormatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "DateFormatters.swift"; path = "Core/Utils/DateFormatters.swift"; sourceTree = "<group>"; };
 		1000000000000000000003F9 /* PhoneNumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PhoneNumberFormatter.swift"; path = "Core/Utils/PhoneNumberFormatter.swift"; sourceTree = "<group>"; };
 		1000000000000000000003FB /* AudioDeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AudioDeviceManager.swift"; path = "Core/Voice/AudioDeviceManager.swift"; sourceTree = "<group>"; };
-		1000000000000000000003FD /* CallKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CallKitManager.swift"; path = "Core/Voice/CallKitManager.swift"; sourceTree = "<group>"; };
-		1000000000000000000003FF /* CallState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CallState.swift"; path = "Core/Voice/CallState.swift"; sourceTree = "<group>"; };
-		100000000000000000000401 /* PushKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PushKitManager.swift"; path = "Core/Voice/PushKitManager.swift"; sourceTree = "<group>"; };
-		100000000000000000000403 /* VoiceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "VoiceService.swift"; path = "Core/Voice/VoiceService.swift"; sourceTree = "<group>"; };
-		100000000000000000000405 /* AnalyticsSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AnalyticsSummary.swift"; path = "Models/AnalyticsSummary.swift"; sourceTree = "<group>"; };
-		100000000000000000000407 /* CallRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CallRecord.swift"; path = "Models/CallRecord.swift"; sourceTree = "<group>"; };
-		100000000000000000000409 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Contact.swift"; path = "Models/Contact.swift"; sourceTree = "<group>"; };
-		10000000000000000000040B /* LeadModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "LeadModel.swift"; path = "Models/LeadModel.swift"; sourceTree = "<group>"; };
-		10000000000000000000040D /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SettingsModel.swift"; path = "Models/SettingsModel.swift"; sourceTree = "<group>"; };
-		10000000000000000000040F /* SMSModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SMSModel.swift"; path = "Models/SMSModel.swift"; sourceTree = "<group>"; };
-		100000000000000000000411 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "User.swift"; path = "Models/User.swift"; sourceTree = "<group>"; };
-		100000000000000000000413 /* VoicemailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "VoicemailModel.swift"; path = "Models/VoicemailModel.swift"; sourceTree = "<group>"; };
-		100000000000000000000415 /* VoiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "VoiceModel.swift"; path = "Models/VoiceModel.swift"; sourceTree = "<group>"; };
-		100000000000000000000417 /* WhatsAppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "WhatsAppModel.swift"; path = "Models/WhatsAppModel.swift"; sourceTree = "<group>"; };
-		100000000000000000000419 /* AgentWorkstationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AgentWorkstationView.swift"; path = "Views/Agent/AgentWorkstationView.swift"; sourceTree = "<group>"; };
-		10000000000000000000041B /* AnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AnalyticsView.swift"; path = "Views/Analytics/AnalyticsView.swift"; sourceTree = "<group>"; };
-		10000000000000000000041D /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "LoginView.swift"; path = "Views/Auth/LoginView.swift"; sourceTree = "<group>"; };
-		10000000000000000000041F /* UIComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIComponents.swift"; path = "Views/Common/UIComponents.swift"; sourceTree = "<group>"; };
-		100000000000000000000421 /* ContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ContactsView.swift"; path = "Views/Contacts/ContactsView.swift"; sourceTree = "<group>"; };
-		100000000000000000000423 /* ActiveCallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ActiveCallView.swift"; path = "Views/Dialer/ActiveCallView.swift"; sourceTree = "<group>"; };
-		100000000000000000000425 /* CountryPickerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CountryPickerSheet.swift"; path = "Views/Dialer/CountryPickerSheet.swift"; sourceTree = "<group>"; };
-		100000000000000000000427 /* DialerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "DialerView.swift"; path = "Views/Dialer/DialerView.swift"; sourceTree = "<group>"; };
-		100000000000000000000429 /* KeypadButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "KeypadButton.swift"; path = "Views/Dialer/KeypadButton.swift"; sourceTree = "<group>"; };
-		10000000000000000000042B /* CallHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CallHistoryView.swift"; path = "Views/History/CallHistoryView.swift"; sourceTree = "<group>"; };
-		10000000000000000000042D /* LeadsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "LeadsView.swift"; path = "Views/Leads/LeadsView.swift"; sourceTree = "<group>"; };
-		10000000000000000000042F /* MessagesHubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "MessagesHubView.swift"; path = "Views/Messages/MessagesHubView.swift"; sourceTree = "<group>"; };
-		100000000000000000000431 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "RootView.swift"; path = "Views/RootView.swift"; sourceTree = "<group>"; };
-		100000000000000000000433 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SettingsView.swift"; path = "Views/Settings/SettingsView.swift"; sourceTree = "<group>"; };
-		100000000000000000000435 /* VoicemailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "VoicemailsView.swift"; path = "Views/Voicemails/VoicemailsView.swift"; sourceTree = "<group>"; };
-		100000000000000000000437 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Assets.xcassets"; path = "Resources/Assets.xcassets"; sourceTree = "<group>"; };
-		100000000000000000000439 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info.plist"; path = "Resources/Info.plist"; sourceTree = "<group>"; };
-		10000000000000000000043A /* CallVexa.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = "CallVexa.entitlements"; path = "Resources/CallVexa.entitlements"; sourceTree = "<group>"; };
-		10000000000000000000043B /* ExportOptions.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "ExportOptions.plist"; path = "ExportOptions.plist"; sourceTree = "<group>"; };
+		1000000000000000000003FD /* CallHistoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CallHistoryManager.swift"; path = "Core/Voice/CallHistoryManager.swift"; sourceTree = "<group>"; };
+		1000000000000000000003FF /* CallKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CallKitManager.swift"; path = "Core/Voice/CallKitManager.swift"; sourceTree = "<group>"; };
+		100000000000000000000401 /* CallState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CallState.swift"; path = "Core/Voice/CallState.swift"; sourceTree = "<group>"; };
+		100000000000000000000403 /* PushKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PushKitManager.swift"; path = "Core/Voice/PushKitManager.swift"; sourceTree = "<group>"; };
+		100000000000000000000405 /* VoiceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "VoiceService.swift"; path = "Core/Voice/VoiceService.swift"; sourceTree = "<group>"; };
+		100000000000000000000407 /* AnalyticsSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AnalyticsSummary.swift"; path = "Models/AnalyticsSummary.swift"; sourceTree = "<group>"; };
+		100000000000000000000409 /* CallRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CallRecord.swift"; path = "Models/CallRecord.swift"; sourceTree = "<group>"; };
+		10000000000000000000040B /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Contact.swift"; path = "Models/Contact.swift"; sourceTree = "<group>"; };
+		10000000000000000000040D /* LeadModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "LeadModel.swift"; path = "Models/LeadModel.swift"; sourceTree = "<group>"; };
+		10000000000000000000040F /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SettingsModel.swift"; path = "Models/SettingsModel.swift"; sourceTree = "<group>"; };
+		100000000000000000000411 /* SMSModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SMSModel.swift"; path = "Models/SMSModel.swift"; sourceTree = "<group>"; };
+		100000000000000000000413 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "User.swift"; path = "Models/User.swift"; sourceTree = "<group>"; };
+		100000000000000000000415 /* VoicemailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "VoicemailModel.swift"; path = "Models/VoicemailModel.swift"; sourceTree = "<group>"; };
+		100000000000000000000417 /* VoiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "VoiceModel.swift"; path = "Models/VoiceModel.swift"; sourceTree = "<group>"; };
+		100000000000000000000419 /* WhatsAppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "WhatsAppModel.swift"; path = "Models/WhatsAppModel.swift"; sourceTree = "<group>"; };
+		10000000000000000000041B /* AgentWorkstationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AgentWorkstationView.swift"; path = "Views/Agent/AgentWorkstationView.swift"; sourceTree = "<group>"; };
+		10000000000000000000041D /* AnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AnalyticsView.swift"; path = "Views/Analytics/AnalyticsView.swift"; sourceTree = "<group>"; };
+		10000000000000000000041F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "LoginView.swift"; path = "Views/Auth/LoginView.swift"; sourceTree = "<group>"; };
+		100000000000000000000421 /* UIComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIComponents.swift"; path = "Views/Common/UIComponents.swift"; sourceTree = "<group>"; };
+		100000000000000000000423 /* ContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ContactsView.swift"; path = "Views/Contacts/ContactsView.swift"; sourceTree = "<group>"; };
+		100000000000000000000425 /* ActiveCallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ActiveCallView.swift"; path = "Views/Dialer/ActiveCallView.swift"; sourceTree = "<group>"; };
+		100000000000000000000427 /* CountryPickerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CountryPickerSheet.swift"; path = "Views/Dialer/CountryPickerSheet.swift"; sourceTree = "<group>"; };
+		100000000000000000000429 /* DialerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "DialerView.swift"; path = "Views/Dialer/DialerView.swift"; sourceTree = "<group>"; };
+		10000000000000000000042B /* KeypadButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "KeypadButton.swift"; path = "Views/Dialer/KeypadButton.swift"; sourceTree = "<group>"; };
+		10000000000000000000042D /* CallHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CallHistoryView.swift"; path = "Views/History/CallHistoryView.swift"; sourceTree = "<group>"; };
+		10000000000000000000042F /* LeadsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "LeadsView.swift"; path = "Views/Leads/LeadsView.swift"; sourceTree = "<group>"; };
+		100000000000000000000431 /* MessagesHubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "MessagesHubView.swift"; path = "Views/Messages/MessagesHubView.swift"; sourceTree = "<group>"; };
+		100000000000000000000433 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "RootView.swift"; path = "Views/RootView.swift"; sourceTree = "<group>"; };
+		100000000000000000000435 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SettingsView.swift"; path = "Views/Settings/SettingsView.swift"; sourceTree = "<group>"; };
+		100000000000000000000437 /* VoicemailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "VoicemailsView.swift"; path = "Views/Voicemails/VoicemailsView.swift"; sourceTree = "<group>"; };
+		100000000000000000000439 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Assets.xcassets"; path = "Resources/Assets.xcassets"; sourceTree = "<group>"; };
+		10000000000000000000043B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info.plist"; path = "Resources/Info.plist"; sourceTree = "<group>"; };
+		10000000000000000000043C /* CallVexa.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = "CallVexa.entitlements"; path = "Resources/CallVexa.entitlements"; sourceTree = "<group>"; };
+		10000000000000000000043D /* ExportOptions.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "ExportOptions.plist"; path = "ExportOptions.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,39 +140,40 @@
 				1000000000000000000003F7 /* DateFormatters.swift */,
 				1000000000000000000003F9 /* PhoneNumberFormatter.swift */,
 				1000000000000000000003FB /* AudioDeviceManager.swift */,
-				1000000000000000000003FD /* CallKitManager.swift */,
-				1000000000000000000003FF /* CallState.swift */,
-				100000000000000000000401 /* PushKitManager.swift */,
-				100000000000000000000403 /* VoiceService.swift */,
-				100000000000000000000405 /* AnalyticsSummary.swift */,
-				100000000000000000000407 /* CallRecord.swift */,
-				100000000000000000000409 /* Contact.swift */,
-				10000000000000000000040B /* LeadModel.swift */,
-				10000000000000000000040D /* SettingsModel.swift */,
-				10000000000000000000040F /* SMSModel.swift */,
-				100000000000000000000411 /* User.swift */,
-				100000000000000000000413 /* VoicemailModel.swift */,
-				100000000000000000000415 /* VoiceModel.swift */,
-				100000000000000000000417 /* WhatsAppModel.swift */,
-				100000000000000000000419 /* AgentWorkstationView.swift */,
-				10000000000000000000041B /* AnalyticsView.swift */,
-				10000000000000000000041D /* LoginView.swift */,
-				10000000000000000000041F /* UIComponents.swift */,
-				100000000000000000000421 /* ContactsView.swift */,
-				100000000000000000000423 /* ActiveCallView.swift */,
-				100000000000000000000425 /* CountryPickerSheet.swift */,
-				100000000000000000000427 /* DialerView.swift */,
-				100000000000000000000429 /* KeypadButton.swift */,
-				10000000000000000000042B /* CallHistoryView.swift */,
-				10000000000000000000042D /* LeadsView.swift */,
-				10000000000000000000042F /* MessagesHubView.swift */,
-				100000000000000000000431 /* RootView.swift */,
-				100000000000000000000433 /* SettingsView.swift */,
-				100000000000000000000435 /* VoicemailsView.swift */,
-				100000000000000000000437 /* Assets.xcassets */,
-				100000000000000000000439 /* Info.plist */,
-				10000000000000000000043A /* CallVexa.entitlements */,
-				10000000000000000000043B /* ExportOptions.plist */,
+				1000000000000000000003FD /* CallHistoryManager.swift */,
+				1000000000000000000003FF /* CallKitManager.swift */,
+				100000000000000000000401 /* CallState.swift */,
+				100000000000000000000403 /* PushKitManager.swift */,
+				100000000000000000000405 /* VoiceService.swift */,
+				100000000000000000000407 /* AnalyticsSummary.swift */,
+				100000000000000000000409 /* CallRecord.swift */,
+				10000000000000000000040B /* Contact.swift */,
+				10000000000000000000040D /* LeadModel.swift */,
+				10000000000000000000040F /* SettingsModel.swift */,
+				100000000000000000000411 /* SMSModel.swift */,
+				100000000000000000000413 /* User.swift */,
+				100000000000000000000415 /* VoicemailModel.swift */,
+				100000000000000000000417 /* VoiceModel.swift */,
+				100000000000000000000419 /* WhatsAppModel.swift */,
+				10000000000000000000041B /* AgentWorkstationView.swift */,
+				10000000000000000000041D /* AnalyticsView.swift */,
+				10000000000000000000041F /* LoginView.swift */,
+				100000000000000000000421 /* UIComponents.swift */,
+				100000000000000000000423 /* ContactsView.swift */,
+				100000000000000000000425 /* ActiveCallView.swift */,
+				100000000000000000000427 /* CountryPickerSheet.swift */,
+				100000000000000000000429 /* DialerView.swift */,
+				10000000000000000000042B /* KeypadButton.swift */,
+				10000000000000000000042D /* CallHistoryView.swift */,
+				10000000000000000000042F /* LeadsView.swift */,
+				100000000000000000000431 /* MessagesHubView.swift */,
+				100000000000000000000433 /* RootView.swift */,
+				100000000000000000000435 /* SettingsView.swift */,
+				100000000000000000000437 /* VoicemailsView.swift */,
+				100000000000000000000439 /* Assets.xcassets */,
+				10000000000000000000043B /* Info.plist */,
+				10000000000000000000043C /* CallVexa.entitlements */,
+				10000000000000000000043D /* ExportOptions.plist */,
 			);
 			path = CallVexa;
 			sourceTree = "<group>";
@@ -238,7 +241,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				200000000000000000000438 /* Assets.xcassets in Resources */,
+				20000000000000000000043A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,35 +262,36 @@
 				2000000000000000000003F8 /* DateFormatters.swift in Sources */,
 				2000000000000000000003FA /* PhoneNumberFormatter.swift in Sources */,
 				2000000000000000000003FC /* AudioDeviceManager.swift in Sources */,
-				2000000000000000000003FE /* CallKitManager.swift in Sources */,
-				200000000000000000000400 /* CallState.swift in Sources */,
-				200000000000000000000402 /* PushKitManager.swift in Sources */,
-				200000000000000000000404 /* VoiceService.swift in Sources */,
-				200000000000000000000406 /* AnalyticsSummary.swift in Sources */,
-				200000000000000000000408 /* CallRecord.swift in Sources */,
-				20000000000000000000040A /* Contact.swift in Sources */,
-				20000000000000000000040C /* LeadModel.swift in Sources */,
-				20000000000000000000040E /* SettingsModel.swift in Sources */,
-				200000000000000000000410 /* SMSModel.swift in Sources */,
-				200000000000000000000412 /* User.swift in Sources */,
-				200000000000000000000414 /* VoicemailModel.swift in Sources */,
-				200000000000000000000416 /* VoiceModel.swift in Sources */,
-				200000000000000000000418 /* WhatsAppModel.swift in Sources */,
-				20000000000000000000041A /* AgentWorkstationView.swift in Sources */,
-				20000000000000000000041C /* AnalyticsView.swift in Sources */,
-				20000000000000000000041E /* LoginView.swift in Sources */,
-				200000000000000000000420 /* UIComponents.swift in Sources */,
-				200000000000000000000422 /* ContactsView.swift in Sources */,
-				200000000000000000000424 /* ActiveCallView.swift in Sources */,
-				200000000000000000000426 /* CountryPickerSheet.swift in Sources */,
-				200000000000000000000428 /* DialerView.swift in Sources */,
-				20000000000000000000042A /* KeypadButton.swift in Sources */,
-				20000000000000000000042C /* CallHistoryView.swift in Sources */,
-				20000000000000000000042E /* LeadsView.swift in Sources */,
-				200000000000000000000430 /* MessagesHubView.swift in Sources */,
-				200000000000000000000432 /* RootView.swift in Sources */,
-				200000000000000000000434 /* SettingsView.swift in Sources */,
-				200000000000000000000436 /* VoicemailsView.swift in Sources */,
+				2000000000000000000003FE /* CallHistoryManager.swift in Sources */,
+				200000000000000000000400 /* CallKitManager.swift in Sources */,
+				200000000000000000000402 /* CallState.swift in Sources */,
+				200000000000000000000404 /* PushKitManager.swift in Sources */,
+				200000000000000000000406 /* VoiceService.swift in Sources */,
+				200000000000000000000408 /* AnalyticsSummary.swift in Sources */,
+				20000000000000000000040A /* CallRecord.swift in Sources */,
+				20000000000000000000040C /* Contact.swift in Sources */,
+				20000000000000000000040E /* LeadModel.swift in Sources */,
+				200000000000000000000410 /* SettingsModel.swift in Sources */,
+				200000000000000000000412 /* SMSModel.swift in Sources */,
+				200000000000000000000414 /* User.swift in Sources */,
+				200000000000000000000416 /* VoicemailModel.swift in Sources */,
+				200000000000000000000418 /* VoiceModel.swift in Sources */,
+				20000000000000000000041A /* WhatsAppModel.swift in Sources */,
+				20000000000000000000041C /* AgentWorkstationView.swift in Sources */,
+				20000000000000000000041E /* AnalyticsView.swift in Sources */,
+				200000000000000000000420 /* LoginView.swift in Sources */,
+				200000000000000000000422 /* UIComponents.swift in Sources */,
+				200000000000000000000424 /* ContactsView.swift in Sources */,
+				200000000000000000000426 /* ActiveCallView.swift in Sources */,
+				200000000000000000000428 /* CountryPickerSheet.swift in Sources */,
+				20000000000000000000042A /* DialerView.swift in Sources */,
+				20000000000000000000042C /* KeypadButton.swift in Sources */,
+				20000000000000000000042E /* CallHistoryView.swift in Sources */,
+				200000000000000000000430 /* LeadsView.swift in Sources */,
+				200000000000000000000432 /* MessagesHubView.swift in Sources */,
+				200000000000000000000434 /* RootView.swift in Sources */,
+				200000000000000000000436 /* SettingsView.swift in Sources */,
+				200000000000000000000438 /* VoicemailsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
