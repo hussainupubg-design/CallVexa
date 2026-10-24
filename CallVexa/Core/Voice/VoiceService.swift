@@ -123,11 +123,11 @@ final class VoiceService: NSObject, ObservableObject {
             // 4. Connect Twilio Voice SDK
             // CRITICAL: Send ONLY authId parameter. Never send destination number!
             #if canImport(TwilioVoice)
-            let connectOptions = ConnectOptions(accessToken: token, delegate: self) { builder in
+            let connectOptions = ConnectOptions(accessToken: token) { builder in
                 builder.params = ["authId": auth.authId]
                 builder.uuid = uuid
             }
-            self.activeCall = TwilioVoiceSDK.connect(options: connectOptions)
+            self.activeCall = TwilioVoiceSDK.connect(options: connectOptions, delegate: self)
             #else
             // Simulated development connect for environments without Twilio binary
             self.simulateCallFlow(uuid: uuid)
@@ -265,8 +265,10 @@ extension VoiceService: CallKitManagerDelegate {
         print("[VoiceService] CallKit performed answer call")
         #if canImport(TwilioVoice)
         if let invite = activeCallInvite {
-            let acceptOptions = AcceptOptions(callKitUUID: action.callUUID, delegate: self)
-            activeCall = invite.accept(options: acceptOptions)
+            let acceptOptions = AcceptOptions(callInvite: invite) { builder in
+                builder.uuid = action.callUUID
+            }
+            activeCall = invite.accept(options: acceptOptions, delegate: self)
             activeCallInvite = nil
             self.callState = .connected
             startDurationTimer()
@@ -342,7 +344,7 @@ extension VoiceService: NotificationDelegate {
     nonisolated func callInviteReceived(callInvite: CallInvite) {
         Task { @MainActor in
             self.activeCallInvite = callInvite
-            self.activeNumber = callInvite.from
+            self.activeNumber = callInvite.from ?? "Unknown"
             self.callState = .ringing
         }
     }
