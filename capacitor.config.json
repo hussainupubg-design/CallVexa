@@ -1,0 +1,45 @@
+{
+  "appId": "us.callvexa.app",
+  "appName": "CallVexa",
+  "webDir": "www",
+  "bundledWebRuntime": false,
+  "server": {
+    "url": "https://callvexa.us",
+    "cleartext": false,
+    "allowNavigation": [
+      "callvexa.us",
+      "*.callvexa.us",
+      "*.twilio.com",
+      "*.twiliocdn.com",
+      "eventgw.twilio.com",
+      "voice.twilio.com",
+      "chunderw-vpc-gll.twilio.com"
+    ]
+  },
+  "ios": {
+    "contentInset": "automatic",
+    "allowsLinkPreview": false,
+    "scrollEnabled": true,
+    "backgroundColor": "#0a0f1e",
+    "preferredContentMode": "mobile",
+    "scheme": "CallVexa"
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 1200,
+      "launchAutoHide": true,
+      "backgroundColor": "#0a0f1e",
+      "showSpinner": false,
+      "splashFullScreen": true
+    },
+    "StatusBar": {
+      "style": "DARK",
+      "backgroundColor": "#0a0f1e"
+    },
+    "Keyboard": {
+      "resize": "body",
+      "style": "DARK",
+      "resizeOnFullScreen": true
+    }
+  }
+}

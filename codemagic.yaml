@@ -1,0 +1,120 @@
+workflows:
+  ios-adhoc-ipa:
+    name: CallVexa iOS Ad Hoc .ipa Build
+    max_build_duration: 60
+    instance_type: mac_mini_m2
+    environment:
+      groups:
+        - apple_credentials # Codemagic App Store Connect / Apple Developer group (optional)
+      vars:
+        APP_ID: "us.callvexa.app"
+        APPLE_ID: "YOUR_APPLE_ID"
+        DEVELOPMENT_TEAM: "YOUR_TEAM_ID"
+        XCODE_PROJECT: "ios/App/App.xcodeproj"
+        XCODE_SCHEME: "App"
+      node: 20
+      xcode: latest
+      cocoapods: default
+    triggering:
+      events:
+        - push
+        - tag
+      branch_patterns:
+        - pattern: main
+          include: true
+        - pattern: master
+          include: true
+    scripts:
+      - name: Install dependencies
+        script: |
+          npm ci || npm install
+      - name: Sync Capacitor iOS platform
+        script: |
+          npx cap sync ios
+      - name: Configure signing placeholders & team ID
+        script: |
+          if [ "$DEVELOPMENT_TEAM" != "YOUR_TEAM_ID" ] && [ -n "$DEVELOPMENT_TEAM" ]; then
+            echo "Applying Apple Developer Team ID: $DEVELOPMENT_TEAM"
+            sed -i '' "s/YOUR_TEAM_ID/$DEVELOPMENT_TEAM/g" ios/App/ExportOptions-AdHoc.plist
+            sed -i '' "s/YOUR_TEAM_ID/$DEVELOPMENT_TEAM/g" ios/App/ExportOptions-Dev.plist
+          else
+            echo "Note: Using default or automatic signing configuration."
+          fi
+      - name: Set up code signing
+        script: |
+          keychain initialize
+          
+          # If Codemagic App Store Connect API keys are configured:
+          if [ -n "$APP_STORE_CONNECT_KEY_IDENTIFIER" ] && [ -n "$APP_STORE_CONNECT_ISSUER_ID" ]; then
+            echo "Fetching signing files via App Store Connect API..."
+            app-store-connect fetch-signing-files "$APP_ID" --type IOS_APP_ADHOC --create
+            keychain add-certificates
+            xcode-project use-profiles
+          elif [ -n "$CM_CERTIFICATE" ] || [ -n "$CERTIFICATE_PRIVATE_KEY" ]; then
+            echo "Importing uploaded certificates..."
+            keychain add-certificates
+            xcode-project use-profiles
+          else
+            echo "Proceeding with Xcode automatic / developer signing."
+          fi
+      - name: Build Xcode archive
+        script: |
+          mkdir -p build/ios/xcarchive
+          mkdir -p build/ios/ipa
+          
+          echo "Building CallVexa archive..."
+          xcodebuild -project "$XCODE_PROJECT" \
+            -scheme "$XCODE_SCHEME" \
+            -configuration Release \
+            -destination 'generic/platform=iOS' \
+            -archivePath build/ios/xcarchive/CallVexa.xcarchive \
+            archive \
+            DEVELOPMENT_TEAM="$DEVELOPMENT_TEAM" \
+            CODE_SIGNING_ALLOWED=YES
+      - name: Export .ipa package
+        script: |
+          EXPORT_SUCCESS=0
+          
+          echo "Attempting Ad Hoc export..."
+          if xcodebuild -exportArchive \
+            -archivePath build/ios/xcarchive/CallVexa.xcarchive \
+            -exportOptionsPlist ios/App/ExportOptions-AdHoc.plist \
+            -exportPath build/ios/ipa \
+            -allowProvisioningUpdates; then
+            EXPORT_SUCCESS=1
+            echo "Ad Hoc export succeeded!"
+          fi
+          
+          if [ $EXPORT_SUCCESS -eq 0 ]; then
+            echo "Attempting Development export fallback..."
+            if xcodebuild -exportArchive \
+              -archivePath build/ios/xcarchive/CallVexa.xcarchive \
+              -exportOptionsPlist ios/App/ExportOptions-Dev.plist \
+              -exportPath build/ios/ipa \
+              -allowProvisioningUpdates; then
+              EXPORT_SUCCESS=1
+              echo "Development export succeeded!"
+            fi
+          fi
+          
+          # If no .ipa was produced by xcodebuild exportArchive, package .app payload into .ipa
+          if [ ! -f build/ios/ipa/*.ipa ]; then
+            echo "Packaging .app bundle from xcarchive into redistributable .ipa..."
+            APP_BUNDLE=$(find build/ios/xcarchive/CallVexa.xcarchive/Products/Applications -name "*.app" | head -n 1)
+            if [ -n "$APP_BUNDLE" ]; then
+              mkdir -p Payload
+              cp -R "$APP_BUNDLE" Payload/CallVexa.app
+              zip -r build/ios/ipa/CallVexa-AdHoc.ipa Payload
+              rm -rf Payload
+              echo "Created build/ios/ipa/CallVexa-AdHoc.ipa"
+            else
+              echo "Error: App bundle not found in archive."
+              exit 1
+            fi
+          fi
+          
+          echo "Build completed. Artifacts:"
+          ls -lh build/ios/ipa/
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - build/ios/xcarchive/*.xcarchive

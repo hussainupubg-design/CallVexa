@@ -1,0 +1,38 @@
+{
+  "name": "callvexa-ios",
+  "version": "1.0.0",
+  "description": "CallVexa iOS Native App Wrapper for https://callvexa.us",
+  "main": "index.js",
+  "scripts": {
+    "sync": "cap sync ios",
+    "copy": "cap copy ios",
+    "build": "cap sync ios",
+    "open:ios": "cap open ios"
+  },
+  "keywords": [
+    "callvexa",
+    "ios",
+    "capacitor",
+    "call-center",
+    "dialer",
+    "twilio",
+    "webrtc"
+  ],
+  "author": "CallVexa Team",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@capacitor/app": "^8.1.2",
+    "@capacitor/cli": "^8.5.3",
+    "@capacitor/core": "^8.5.3",
+    "@capacitor/ios": "^8.5.3",
+    "@capacitor/keyboard": "^8.0.6",
+    "@capacitor/network": "^8.0.1",
+    "@capacitor/push-notifications": "^8.1.3",
+    "@capacitor/splash-screen": "^8.0.2",
+    "@capacitor/status-bar": "^8.0.4",
+    "@capgo/capacitor-incoming-call-kit": "^8.2.14"
+  },
+  "devDependencies": {
+    "puppeteer-core": "^25.16.0"
+  }
+}
