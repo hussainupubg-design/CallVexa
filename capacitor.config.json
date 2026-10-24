@@ -25,13 +25,6 @@
     "scheme": "CallVexa"
   },
   "plugins": {
-    "SplashScreen": {
-      "launchShowDuration": 1200,
-      "launchAutoHide": true,
-      "backgroundColor": "#0a0f1e",
-      "showSpinner": false,
-      "splashFullScreen": true
-    },
     "Keyboard": {
       "resize": "body",
       "style": "DARK",
