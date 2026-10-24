@@ -5,7 +5,7 @@ import AVFoundation
 import Network
 import CallKit
 
-public class MainViewController: CAPBridgeViewController, WKUIDelegate, CallKitManagerDelegate {
+public class MainViewController: CAPBridgeViewController, WKUIDelegate, WKNavigationDelegate, CallKitManagerDelegate {
     
     private let monitor = NWPathMonitor()
     private let monitorQueue = DispatchQueue(label: "CallVexaNetworkMonitor")
@@ -29,6 +29,7 @@ public class MainViewController: CAPBridgeViewController, WKUIDelegate, CallKitM
         webView.isOpaque = true
         webView.scrollView.backgroundColor = UIColor(red: 10/255.0, green: 15/255.0, blue: 30/255.0, alpha: 1.0)
         webView.uiDelegate = self
+        webView.navigationDelegate = self
         
         // Add script message handler for bidirectional communication with CallKit / in-app dialer
         let contentController = webView.configuration.userContentController
@@ -113,7 +114,7 @@ public class MainViewController: CAPBridgeViewController, WKUIDelegate, CallKitM
     }
     
     // MARK: - Navigation Handling & External Links
-    public override func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+    public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         guard let url = navigationAction.request.url else {
             decisionHandler(.allow)
             return
@@ -129,7 +130,7 @@ public class MainViewController: CAPBridgeViewController, WKUIDelegate, CallKitM
             return
         }
         
-        super.webView(webView, decidePolicyFor: navigationAction, decisionHandler: decisionHandler)
+        decisionHandler(.allow)
     }
     
     // MARK: - Navigation Failure / Offline Handling
