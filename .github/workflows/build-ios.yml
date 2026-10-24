@@ -1,0 +1,132 @@
+name: Build CallVexa iOS IPA
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+    inputs:
+      signing_type:
+        description: 'Signing Type (ad-hoc, development, or unsigned)'
+        required: true
+        default: 'unsigned'
+        type: choice
+        options:
+          - unsigned
+          - ad-hoc
+          - development
+
+jobs:
+  build:
+    name: Compile CallVexa IPA (macOS Runner)
+    runs-on: macos-14
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: |
+          npm ci || npm install
+
+      - name: Sync Capacitor iOS platform
+        run: |
+          npx cap sync ios
+
+      - name: Select Xcode
+        run: |
+          sudo xcode-select -s /Applications/Xcode.app
+          xcodebuild -version
+
+      - name: Configure Signing (if secrets provided)
+        env:
+          CERTIFICATE_BASE64: ${{ secrets.BUILD_CERTIFICATE_BASE64 }}
+          CERTIFICATE_PASSWORD: ${{ secrets.P12_PASSWORD }}
+          PROVISION_PROFILE_BASE64: ${{ secrets.BUILD_PROVISION_PROFILE_BASE64 }}
+          KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD || 'callvexa123' }}
+        run: |
+          if [ -n "$CERTIFICATE_BASE64" ]; then
+            echo "Importing Apple Distribution / Development certificate..."
+            KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
+            security create-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+            security set-keychain-settings -lut 21600 $KEYCHAIN_PATH
+            security unlock-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+
+            CERT_PATH=$RUNNER_TEMP/cert.p12
+            echo -n "$CERTIFICATE_BASE64" | base64 --decode -o $CERT_PATH
+            security import $CERT_PATH -P "$CERTIFICATE_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
+            security set-key-partition-list -S apple-tool:,apple: -s -k "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+
+            # Provisioning Profile
+            mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+            PROFILE_PATH=$RUNNER_TEMP/profile.mobileprovision
+            echo -n "$PROVISION_PROFILE_BASE64" | base64 --decode -o $PROFILE_PATH
+            cp $PROFILE_PATH ~/Library/MobileDevice/Provisioning\ Profiles/
+            echo "Signing certificate and provisioning profile installed successfully."
+          else
+            echo "No signing certificate secrets found in GitHub Actions repository."
+            echo "Proceeding with unsigned release archive build (installable via AltStore / Sideloadly / TrollStore)."
+          fi
+
+      - name: Compile Release Archive
+        run: |
+          mkdir -p build/xcarchive
+          mkdir -p dist
+
+          echo "Compiling Xcode project for physical iOS devices (arm64)..."
+          xcodebuild -project ios/App/App.xcodeproj \
+            -scheme App \
+            -configuration Release \
+            -destination 'generic/platform=iOS' \
+            -archivePath build/xcarchive/CallVexa.xcarchive \
+            archive \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO
+
+      - name: Package .ipa
+        run: |
+          echo "Packaging compiled .app bundle into CallVexa.ipa..."
+          mkdir -p Payload
+          APP_DIR=$(find build/xcarchive/CallVexa.xcarchive/Products/Applications -name "*.app" -maxdepth 1 | head -n 1)
+          
+          if [ -z "$APP_DIR" ]; then
+            echo "Error: App bundle not found in archive."
+            exit 1
+          fi
+
+          echo "Found app bundle at: $APP_DIR"
+          cp -R "$APP_DIR" Payload/CallVexa.app
+
+          # Package into dist/CallVexa.ipa
+          zip -r dist/CallVexa.ipa Payload
+          rm -rf Payload
+
+          echo "Listing dist/ contents:"
+          ls -lh dist/CallVexa.ipa
+
+      - name: Verify IPA Structure & Executable
+        run: |
+          echo "Verifying compiled IPA contents..."
+          unzip -l dist/CallVexa.ipa | head -n 35
+
+          # Verify Mach-O ARM64 binary inside IPA
+          unzip -q dist/CallVexa.ipa -d temp_verify
+          file temp_verify/Payload/CallVexa.app/App
+          otool -l temp_verify/Payload/CallVexa.app/App | grep -A 5 LC_VERSION_MIN_IPHONEOS || true
+          rm -rf temp_verify
+          echo "Verification complete!"
+
+      - name: Upload IPA as Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: CallVexa-iOS-IPA
+          path: dist/CallVexa.ipa
+          retention-days: 14
