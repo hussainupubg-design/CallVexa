@@ -99,7 +99,6 @@ final class VoiceService: NSObject, ObservableObject {
         self.durationSeconds = 0
         self.isMuted = false
         self.isSpeaker = false
-        AudioDeviceManager.shared.setSpeaker(enabled: false)
         
         let isAdmin = AuthSessionManager.shared.currentUser?.isAdmin ?? true
         let authEndpoint = isAdmin ? "/api/voice/authorize" : "/api/agent/authorize"

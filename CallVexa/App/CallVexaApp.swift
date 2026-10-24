@@ -23,8 +23,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil
     ) -> Bool {
-        // Configure background audio handling
-        AudioDeviceManager.shared.configureAudioSessionForCall()
         return true
     }
 }
