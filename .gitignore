@@ -28,10 +28,14 @@ project.xcworkspace/xcuserdata/
 *.cer
 *.mobileprovision
 
-# Temporary files
+# Local tools & automation helpers
+gh_bin/
+*.db
 *.tmp
-icon_temp.html
-splash_temp.html
-icon_raw.png
-splash_raw.png
-test_icon.png
+monitor_and_download.js
+push_to_github.js
+find_github_repo.py
+query_chrome.py
+make_assets.py
+test_callvexa.js
+comprehensive_test_report.json
